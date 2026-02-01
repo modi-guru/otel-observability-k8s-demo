@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.otelCollector.name }}
+spec:
+  selector:
+    app: {{ .Values.otelCollector.name }}
+  ports:
+    - name: otlp-grpc
+      port: {{ .Values.otelCollector.service.grpcPort }}
+      targetPort: {{ .Values.otelCollector.service.grpcPort }}
+
+    - name: otlp-http
+      port: {{ .Values.otelCollector.service.httpPort }}
+      targetPort: {{ .Values.otelCollector.service.httpPort }}

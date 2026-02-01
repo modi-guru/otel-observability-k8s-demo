@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontendproxy
+spec:
+  type: ClusterIP
+  selector:
+    app: frontendproxy
+  ports:
+    - port: {{ .Values.frontendproxy.service.port }}
+      targetPort: {{ .Values.frontendproxy.service.port }}

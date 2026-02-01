@@ -1,0 +1,19 @@
+{{- if .Values.frontendproxy.ingress.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: frontendproxy
+spec:
+  ingressClassName: {{ .Values.frontendproxy.ingress.className }}
+  rules:
+    - host: {{ .Values.frontendproxy.ingress.host }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: frontendproxy
+                port:
+                  number: {{ .Values.frontendproxy.service.port }}
+{{- end }}

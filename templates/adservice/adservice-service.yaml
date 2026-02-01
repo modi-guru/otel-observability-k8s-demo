@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: adservice
+spec:
+  type: {{ .Values.adservice.service.type }}
+  selector:
+    app: adservice
+  ports:
+    - port: {{ .Values.adservice.service.port }}
+      targetPort: 8080
+

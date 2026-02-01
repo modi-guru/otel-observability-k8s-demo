@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontendproxy
+spec:
+  replicas: {{ .Values.frontendproxy.replicaCount }}
+  selector:
+    matchLabels:
+      app: frontendproxy
+  template:
+    metadata:
+      labels:
+        app: frontendproxy
+    spec:
+      containers:
+        - name: envoy
+          image: "{{ .Values.frontendproxy.image.repository }}:{{ .Values.frontendproxy.image.tag }}"
+          imagePullPolicy: {{ .Values.frontendproxy.image.pullPolicy }}
+          args:
+            - "-c"
+            - "/etc/envoy/envoy.yaml"
+            - "--log-level"
+            - "info"
+          ports:
+            - containerPort: {{ .Values.frontendproxy.service.port }}
+          volumeMounts:
+            - name: envoy-config
+              mountPath: /etc/envoy
+      volumes:
+        - name: envoy-config
+          configMap:
+            name: frontendproxy-envoy
