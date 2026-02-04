@@ -18,3 +18,7 @@ spec:
       protocol: TCP
       port: {{ .Values.otelCollector.service.httpPort }}
       targetPort: otlp-http
+    - name: metrics
+      port: {{ .Values.otelCollector.service.metricsPort }}
+      targetPort: metrics
+      protocol: TCP

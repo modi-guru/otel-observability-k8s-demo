@@ -16,16 +16,25 @@ spec:
         - name: envoy
           image: "{{ .Values.frontendproxy.image.repository }}:{{ .Values.frontendproxy.image.tag }}"
           imagePullPolicy: {{ .Values.frontendproxy.image.pullPolicy }}
+
           args:
             - "-c"
             - "/etc/envoy/envoy.yaml"
             - "--log-level"
             - "info"
+
           ports:
             - containerPort: {{ .Values.frontendproxy.service.port }}
+
+          env:
+{{ include "otel.env" . | indent 12 }}
+            - name: OTEL_SERVICE_NAME
+              value: frontendproxy
+
           volumeMounts:
             - name: envoy-config
               mountPath: /etc/envoy
+
       volumes:
         - name: envoy-config
           configMap:

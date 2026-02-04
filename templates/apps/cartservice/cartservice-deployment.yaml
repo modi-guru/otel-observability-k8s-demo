@@ -23,12 +23,13 @@ spec:
               value: "8080"
 
             # OPTIONAL: silence OTEL exporter for now
-            - name: OTEL_TRACES_EXPORTER
-              value: "none"
-            - name: OTEL_METRICS_EXPORTER
-              value: "none"
-            - name: OTEL_LOGS_EXPORTER
-              value: "none"
             - name: VALKEY_ADDR
               value: "redis:6379"
+
+
+
+{{ include "otel.env" . | indent 12 }}
+
+            - name: OTEL_SERVICE_NAME
+              value: cartservice
 

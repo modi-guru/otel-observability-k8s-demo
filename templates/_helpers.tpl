@@ -60,3 +60,13 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+{{- define "otel.env" -}}
+- name: OTEL_EXPORTER_OTLP_ENDPOINT
+  value: {{ .Values.global.otel.endpoint | quote }}
+- name: OTEL_TRACES_EXPORTER
+  value: otlp
+- name: OTEL_METRICS_EXPORTER
+  value: otlp
+- name: OTEL_LOGS_EXPORTER
+  value: otlp
+{{- end -}}

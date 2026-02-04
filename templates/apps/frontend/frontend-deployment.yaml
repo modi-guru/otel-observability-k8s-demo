@@ -26,3 +26,8 @@ spec:
             - name: FRONTEND_ADDR
               value: ":8080"
 
+{{ include "otel.env" . | indent 12 }}
+
+            - name: OTEL_SERVICE_NAME
+              value: frontend
+
