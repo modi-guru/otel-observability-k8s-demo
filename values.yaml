@@ -23,6 +23,7 @@ adservice:
     type: ClusterIP
     port: 8080
 
+
 productcatalog:
   replicaCount: 1
 
@@ -34,6 +35,7 @@ productcatalog:
   service:
     type: ClusterIP
     port: 8080
+
 
 cartservice:
   replicaCount: 1
@@ -47,6 +49,7 @@ cartservice:
     type: ClusterIP
     port: 8080
 
+
 frontendproxy:
   replicaCount: 1
 
@@ -56,6 +59,7 @@ frontendproxy:
     pullPolicy: IfNotPresent
 
   service:
+    type: ClusterIP
     port: 8080
 
   ingress:
@@ -66,12 +70,18 @@ frontendproxy:
 
 otelCollector:
   name: otel-collector
+
+  replicaCount: 1
+
   image:
     repository: otel/opentelemetry-collector
     tag: 0.96.0
     pullPolicy: IfNotPresent
 
   service:
+    type: ClusterIP
     grpcPort: 4317
     httpPort: 4318
+
+
 

@@ -2,14 +2,19 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ .Values.otelCollector.name }}
+  labels:
+    app: {{ .Values.otelCollector.name }}
 spec:
+  type: ClusterIP
   selector:
     app: {{ .Values.otelCollector.name }}
   ports:
     - name: otlp-grpc
+      protocol: TCP
       port: {{ .Values.otelCollector.service.grpcPort }}
-      targetPort: {{ .Values.otelCollector.service.grpcPort }}
+      targetPort: otlp-grpc
 
     - name: otlp-http
+      protocol: TCP
       port: {{ .Values.otelCollector.service.httpPort }}
-      targetPort: {{ .Values.otelCollector.service.httpPort }}
+      targetPort: otlp-http
