@@ -4,11 +4,14 @@ metadata:
   name: {{ .Values.otelCollector.name }}
   labels:
     app: {{ .Values.otelCollector.name }}
+
 spec:
   replicas: 1
+
   selector:
     matchLabels:
       app: {{ .Values.otelCollector.name }}
+
   template:
     metadata:
       labels:
@@ -27,10 +30,17 @@ spec:
               containerPort: 4317
             - name: otlp-http
               containerPort: 4318
-            - name: metrics
+            - name: prom-metrics
               containerPort: 8889
-            - name: telemetry
-              containerPort: 8888
+            - name: health
+              containerPort: 13133
+
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 13133
+            initialDelaySeconds: 5
+            periodSeconds: 10
 
           volumeMounts:
             - name: config

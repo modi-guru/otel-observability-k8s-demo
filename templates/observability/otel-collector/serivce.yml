@@ -9,16 +9,17 @@ spec:
   selector:
     app: {{ .Values.otelCollector.name }}
   ports:
-    - name: otlp-grpc
-      protocol: TCP
-      port: {{ .Values.otelCollector.service.grpcPort }}
-      targetPort: otlp-grpc
+  - name: otlp-grpc
+    protocol: TCP
+    port: {{ .Values.otelCollector.service.grpcPort }}
+    targetPort: 4317
 
-    - name: otlp-http
-      protocol: TCP
-      port: {{ .Values.otelCollector.service.httpPort }}
-      targetPort: otlp-http
-    - name: metrics
-      port: {{ .Values.otelCollector.service.metricsPort }}
-      targetPort: metrics
-      protocol: TCP
+  - name: otlp-http
+    protocol: TCP
+    port: {{ .Values.otelCollector.service.httpPort }}
+    targetPort: 4318
+
+  - name: metrics
+    protocol: TCP
+    port: {{ .Values.otelCollector.service.metricsPort }}
+    targetPort: 8889
