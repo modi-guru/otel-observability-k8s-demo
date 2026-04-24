@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: frontendproxy
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
     app: frontendproxy
   ports:
