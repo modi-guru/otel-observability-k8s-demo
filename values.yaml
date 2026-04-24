@@ -7,8 +7,8 @@ frontend:
   replicaCount: 1
 
   image:
-    repository: ghcr.io/open-telemetry/demo
-    tag: 1.12.0-frontend
+    repository: docker.io/modi123/otel-frontend
+    tag: 95580ba
     pullPolicy: IfNotPresent
 
   service:
@@ -17,7 +17,7 @@ frontend:
 
 
 adservice:
-  replicaCount: 1
+  replicaCount: 2
 
   image:
     repository: ghcr.io/open-telemetry/demo
