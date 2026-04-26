@@ -1,50 +1,35 @@
 global:
   otel:
     endpoint: http://otel-collector:4318
-
-
 frontend:
   replicaCount: 1
-
   image:
     repository: docker.io/modi123/otel-frontend
     tag: 95580ba
     pullPolicy: IfNotPresent
-
   service:
     type: ClusterIP
     port: 8080
-
-
 adservice:
   replicaCount: 2
-
   image:
     repository: ghcr.io/open-telemetry/demo
     tag: 1.12.0-adservice
     pullPolicy: IfNotPresent
-
   service:
     type: ClusterIP
     port: 8080
-
-
 productcatalog:
   replicaCount: 1
-
   image:
     repository: ghcr.io/open-telemetry/demo
     tag: 1.12.0-productcatalogservice
     pullPolicy: IfNotPresent
-
   service:
     type: ClusterIP
     port: 8080
-
-
 cartservice:
   replicaCount: 1
-
   image:
     repository: docker.io/modi123/cart-service
     tag: v1
@@ -53,41 +38,28 @@ cartservice:
   service:
     type: ClusterIP
     port: 8080
-
-
 frontendproxy:
   replicaCount: 1
-
   image:
     repository: envoyproxy/envoy
     tag: v1.30-latest
     pullPolicy: IfNotPresent
-
   service:
     type: ClusterIP
     port: 8080
-
   ingress:
     enabled: true
     className: nginx
     host: otel.local
-
-
 otelCollector:
   name: otel-collector
-
   replicaCount: 1
-
   image:
     repository: otel/opentelemetry-collector
     tag: 0.96.0
     pullPolicy: IfNotPresent
-
   service:
     type: ClusterIP
     grpcPort: 4317
     httpPort: 4318
     metricsPort: 8889
-
-
-
