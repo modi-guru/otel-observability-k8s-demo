@@ -23,7 +23,7 @@ productcatalog:
   replicaCount: 1
   image:
     repository: ghcr.io/open-telemetry/demo
-    tag: fb5a762
+    tag: fe14894
     pullPolicy: IfNotPresent
   service:
     type: ClusterIP
