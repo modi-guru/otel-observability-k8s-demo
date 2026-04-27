@@ -22,9 +22,9 @@ adservice:
 productcatalog:
   replicaCount: 1
   image:
-    repository: ghcr.io/open-telemetry/demo
+    repository: docker.io/modi123/productcatalog
     tag: fe14894
-    pullPolicy: IfNotPresent
+    pullPolicy: Always
   service:
     type: ClusterIP
     port: 8080
