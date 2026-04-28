@@ -22,8 +22,8 @@ adservice:
 productcatalog:
   replicaCount: 1
   image:
-    repository: docker.io/modi123/productcatalog
-    tag: 33dbae6
+    repository: ghcr.io/open-telemetry/demo
+    tag: 1.12.0-productcatalogservice
     pullPolicy: Always
   service:
     type: ClusterIP
