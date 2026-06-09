@@ -20,7 +20,7 @@ data:
         endpoint: "0.0.0.0:8889"
 
       logging:
-        verbosity: normal
+        verbosity: detailed
 
     extensions:
       health_check:
