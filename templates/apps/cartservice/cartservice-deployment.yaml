@@ -26,8 +26,6 @@ spec:
             - name: VALKEY_ADDR
               value: "redis:6379"
 
-
-
 {{ include "otel.env" . | indent 12 }}
 
             - name: OTEL_SERVICE_NAME

@@ -1,6 +1,6 @@
 global:
   otel:
-    endpoint: http://otel-collector:4318
+    endpoint: http://otel-collector:4317
 frontend:
   replicaCount: 1
   image:
